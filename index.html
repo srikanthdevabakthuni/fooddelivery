@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FoodHub India — Premium Food Delivery</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><span class="logo-text">Food<span>Hub</span></span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <i class="fa-solid fa-bars" style="font-size:22px;"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link active-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="restaurants.html">Restaurants</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#offers">Offers</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3">
+        <a href="cart.html" class="btn-icon cart-badge">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge-count">0</span>
+        </a>
+        <a href="menu.html" class="btn-primary-custom">Order Now</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-6">
+        <div class="hero-badge">
+          <i class="fa-solid fa-bolt"></i>
+          Fast Delivery &bull; Best Restaurants in India
+        </div>
+        <h1>
+          Authentic Indian<br>
+          Food Delivered <span class="highlight">Fast</span>
+        </h1>
+        <p>
+          Discover the best Indian restaurants and order mouth-watering meals
+          with lightning-fast delivery right to your doorstep across India.
+        </p>
+        <div class="hero-actions">
+          <a href="menu.html" class="btn-primary-custom">
+            <i class="fa-solid fa-utensils me-2"></i>Order Food
+          </a>
+          <a href="restaurants.html" class="btn-outline-custom">Find Restaurants</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-pill">
+            <div class="number">50K+</div>
+            <div class="label">Happy Customers</div>
+          </div>
+          <div class="stat-pill">
+            <div class="number">200+</div>
+            <div class="label">Restaurants</div>
+          </div>
+          <div class="stat-pill">
+            <div class="number">4.9★</div>
+            <div class="label">Avg Rating</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-img-wrap">
+          <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?q=80&w=1200&auto=format&fit=crop" alt="Indian Food"/>
+          <div class="hero-float-card card-top">
+            <div class="icon">🚀</div>
+            <div class="info">
+              <div class="title">30 min delivery</div>
+              <div class="sub">Pan India</div>
+            </div>
+          </div>
+          <div class="hero-float-card card-bottom">
+            <div class="icon">⭐</div>
+            <div class="info">
+              <div class="title">Top Rated</div>
+              <div class="sub">4.9 / 5.0 stars</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CATEGORIES -->
+<section class="category-bar">
+  <div class="container">
+    <div class="d-flex gap-3 overflow-auto pb-1" style="scrollbar-width:none;">
+      <a href="menu.html?cat=all"     class="cat-pill active"><span class="emoji">🍽️</span> All</a>
+      <a href="menu.html?cat=biryani" class="cat-pill"><span class="emoji">🍛</span> Biryani</a>
+      <a href="menu.html?cat=curry"   class="cat-pill"><span class="emoji">🍲</span> Curries</a>
+      <a href="menu.html?cat=tandoor" class="cat-pill"><span class="emoji">🔥</span> Tandoor</a>
+      <a href="menu.html?cat=snacks"  class="cat-pill"><span class="emoji">🥙</span> Snacks</a>
+      <a href="menu.html?cat=dosa"    class="cat-pill"><span class="emoji">🫓</span> Dosa</a>
+      <a href="menu.html?cat=sweets"  class="cat-pill"><span class="emoji">🍮</span> Sweets</a>
+      <a href="menu.html?cat=drinks"  class="cat-pill"><span class="emoji">🥤</span> Drinks</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FEATURED FOOD -->
+<section class="section-pad" id="foods">
+  <div class="container">
+    <div class="text-center mb-5 fade-in">
+      <span class="section-label">POPULAR DISHES</span>
+      <h2 class="section-title">Featured Food Items</h2>
+    </div>
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-4 fade-in">
+        <div class="food-card">
+          <div class="food-img-wrap">
+            <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=800&auto=format&fit=crop" alt="Chicken Biryani"/>
+            <span class="food-badge">Best Seller</span>
+            <button class="food-fav" title="Favourite"><i class="fa-regular fa-heart"></i></button>
+          </div>
+          <div class="food-body">
+            <div class="food-meta">
+              <span class="food-rating">⭐ 4.9</span>
+              <span class="food-time"><i class="fa-regular fa-clock me-1"></i>35 min</span>
+            </div>
+            <h5>Chicken Biryani</h5>
+            <p>Aromatic basmati rice cooked with tender chicken, saffron and whole spices.</p>
+            <div class="food-footer">
+              <span class="food-price">₹299</span>
+              <button class="btn-add" data-id="1" data-name="Chicken Biryani" data-price="299"
+                data-img="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=200&auto=format&fit=crop">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 fade-in">
+        <div class="food-card">
+          <div class="food-img-wrap">
+            <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?q=80&w=800&auto=format&fit=crop" alt="Butter Chicken"/>
+            <span class="food-badge" style="background:#8b5cf6;">Popular</span>
+            <button class="food-fav" title="Favourite"><i class="fa-regular fa-heart"></i></button>
+          </div>
+          <div class="food-body">
+            <div class="food-meta">
+              <span class="food-rating">⭐ 4.8</span>
+              <span class="food-time"><i class="fa-regular fa-clock me-1"></i>30 min</span>
+            </div>
+            <h5>Butter Chicken</h5>
+            <p>Creamy tomato-based curry with tender chicken pieces and aromatic spices.</p>
+            <div class="food-footer">
+              <span class="food-price">₹349</span>
+              <button class="btn-add" data-id="2" data-name="Butter Chicken" data-price="349"
+                data-img="https://images.unsplash.com/photo-1574484284002-952d92456975?q=80&w=200&auto=format&fit=crop">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 fade-in">
+        <div class="food-card">
+          <div class="food-img-wrap">
+            <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?q=80&w=800&auto=format&fit=crop" alt="Masala Dosa"/>
+            <span class="food-badge" style="background:#22c55e;">South Indian</span>
+            <button class="food-fav" title="Favourite"><i class="fa-regular fa-heart"></i></button>
+          </div>
+          <div class="food-body">
+            <div class="food-meta">
+              <span class="food-rating">⭐ 4.7</span>
+              <span class="food-time"><i class="fa-regular fa-clock me-1"></i>20 min</span>
+            </div>
+            <h5>Masala Dosa</h5>
+            <p>Crispy golden dosa stuffed with spiced potato filling, served with sambar & chutneys.</p>
+            <div class="food-footer">
+              <span class="food-price">₹149</span>
+              <button class="btn-add" data-id="3" data-name="Masala Dosa" data-price="149"
+                data-img="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?q=80&w=200&auto=format&fit=crop">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="text-center mt-5">
+      <a href="menu.html" class="btn-outline-custom">View Full Menu <i class="fa-solid fa-arrow-right ms-2"></i></a>
+    </div>
+  </div>
+</section>
+
+
+<!-- TOP RESTAURANTS (preview) -->
+<section class="section-pad bg-white" id="restaurants">
+  <div class="container">
+    <div class="text-center mb-5 fade-in">
+      <span class="section-label">NEAR YOU</span>
+      <h2 class="section-title">Top Restaurants</h2>
+    </div>
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-4 fade-in">
+        <div class="resto-card">
+          <div class="resto-img-wrap">
+            <img class="resto-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800&auto=format&fit=crop" alt="Spice Garden"/>
+            <span class="resto-status open">Open</span>
+          </div>
+          <div class="resto-body">
+            <h5>Spice Garden</h5>
+            <div class="food-rating">⭐ 4.9 <span class="text-muted fw-normal">(540 reviews)</span></div>
+            <div class="resto-meta">
+              <span><i class="fa-solid fa-motorcycle"></i> Free delivery</span>
+              <span><i class="fa-regular fa-clock"></i> 25–35 min</span>
+            </div>
+            <div class="resto-tags">
+              <span class="resto-tag">Biryani</span>
+              <span class="resto-tag">Curries</span>
+              <span class="resto-tag">North Indian</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 fade-in">
+        <div class="resto-card">
+          <div class="resto-img-wrap">
+            <img class="resto-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=800&auto=format&fit=crop" alt="Dakshin House"/>
+            <span class="resto-status open">Open</span>
+          </div>
+          <div class="resto-body">
+            <h5>Dakshin House</h5>
+            <div class="food-rating">⭐ 4.8 <span class="text-muted fw-normal">(310 reviews)</span></div>
+            <div class="resto-meta">
+              <span><i class="fa-solid fa-motorcycle"></i> ₹29 delivery</span>
+              <span><i class="fa-regular fa-clock"></i> 20–30 min</span>
+            </div>
+            <div class="resto-tags">
+              <span class="resto-tag">Dosa</span>
+              <span class="resto-tag">Idli</span>
+              <span class="resto-tag">South Indian</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 fade-in">
+        <div class="resto-card">
+          <div class="resto-img-wrap">
+            <img class="resto-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop" alt="Tandoor Palace"/>
+            <span class="resto-status open">Open</span>
+          </div>
+          <div class="resto-body">
+            <h5>Tandoor Palace</h5>
+            <div class="food-rating">⭐ 4.7 <span class="text-muted fw-normal">(220 reviews)</span></div>
+            <div class="resto-meta">
+              <span><i class="fa-solid fa-motorcycle"></i> Free delivery</span>
+              <span><i class="fa-regular fa-clock"></i> 30–40 min</span>
+            </div>
+            <div class="resto-tags">
+              <span class="resto-tag">Tandoor</span>
+              <span class="resto-tag">Kebabs</span>
+              <span class="resto-tag">Mughlai</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="text-center mt-5">
+      <a href="restaurants.html" class="btn-outline-custom">View All Restaurants <i class="fa-solid fa-arrow-right ms-2"></i></a>
+    </div>
+  </div>
+</section>
+
+
+<!-- OFFERS BANNER -->
+<section class="section-pad" id="offers" style="background:linear-gradient(135deg,#fff7ed,#fff);">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6 fade-in">
+        <div class="p-4 rounded-4 text-white" style="background:linear-gradient(135deg,#f97316,#ea580c); min-height:180px; display:flex; flex-direction:column; justify-content:center;">
+          <h4 style="font-family:'Playfair Display',serif;">🎉 First Order Offer</h4>
+          <p class="mb-3 opacity-75">Use code <strong>FIRST50</strong> and get 50% off your first order!</p>
+          <a href="menu.html" class="btn-outline-custom" style="color:#fff; border-color:rgba(255,255,255,0.5); width:fit-content;">Claim Offer</a>
+        </div>
+      </div>
+      <div class="col-md-6 fade-in">
+        <div class="p-4 rounded-4 text-white" style="background:linear-gradient(135deg,#7c3aed,#4f46e5); min-height:180px; display:flex; flex-direction:column; justify-content:center;">
+          <h4 style="font-family:'Playfair Display',serif;">⚡ Free Delivery Weekend</h4>
+          <p class="mb-3 opacity-75">Free delivery on all orders above ₹499 this weekend!</p>
+          <a href="menu.html" class="btn-outline-custom" style="color:#fff; border-color:rgba(255,255,255,0.5); width:fit-content;">Order Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4">
+        <h5 class="mb-3" style="font-size:26px;">Food<span style="color:var(--primary);">Hub</span></h5>
+        <p style="font-size:14px; line-height:1.8;">Premium food delivery from India's best restaurants. Fast, reliable and delicious — every time.</p>
+        <div class="social-links mt-4">
+          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h5>Quick Links</h5>
+        <ul class="footer-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="restaurants.html">Restaurants</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="checkout.html">Checkout</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h5>Categories</h5>
+        <ul class="footer-list">
+          <li><a href="menu.html?cat=biryani">Biryani</a></li>
+          <li><a href="menu.html?cat=curry">Curries</a></li>
+          <li><a href="menu.html?cat=dosa">Dosa</a></li>
+          <li><a href="menu.html?cat=sweets">Sweets</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5>Contact</h5>
+        <p style="font-size:14px; line-height:2;">
+          <i class="fa-solid fa-location-dot me-2" style="color:var(--primary);"></i>MG Road, Bengaluru, Karnataka<br>
+          <i class="fa-solid fa-phone me-2" style="color:var(--primary);"></i>+91 98765 43210<br>
+          <i class="fa-solid fa-envelope me-2" style="color:var(--primary);"></i>hello@foodhub.in
+        </p>
+      </div>
+    </div>
+    <div class="border-top border-secondary pt-4 d-flex justify-content-between align-items-center flex-wrap gap-3" style="border-color:rgba(255,255,255,0.1) !important;">
+      <p class="mb-0" style="font-size:13px;">© 2025 FoodHub India. All rights reserved.</p>
+      <div class="d-flex gap-3" style="font-size:13px;">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+<script>
+document.querySelectorAll('.btn-add').forEach(btn => {
+  btn.addEventListener('click', () => {
+    FoodHub.addToCart({ id: btn.dataset.id, name: btn.dataset.name, price: parseFloat(btn.dataset.price), img: btn.dataset.img });
+    btn.textContent = '✓'; btn.classList.add('added');
+    setTimeout(() => { btn.textContent = '+'; btn.classList.remove('added'); }, 1200);
+  });
+});
+document.querySelectorAll('.food-fav').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('liked');
+    btn.innerHTML = btn.classList.contains('liked') ? '<i class="fa-solid fa-heart"></i>' : '<i class="fa-regular fa-heart"></i>';
+  });
+});
+</script>
+</body>
+</html>

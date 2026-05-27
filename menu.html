@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu — FoodHub India</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><span class="logo-text">Food<span>Hub</span></span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <i class="fa-solid fa-bars" style="font-size:22px;"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active-link" href="menu.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="restaurants.html">Restaurants</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#offers">Offers</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3">
+        <a href="cart.html" class="btn-icon cart-badge">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge-count">0</span>
+        </a>
+        <a href="cart.html" class="btn-primary-custom">View Cart</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- PAGE HEADER -->
+<div style="padding-top:110px; padding-bottom:50px; background:linear-gradient(135deg,#fff7ed,#fff);">
+  <div class="container">
+    <span class="section-label">OUR MENU</span>
+    <h1 class="section-title">Explore All Dishes</h1>
+    <p class="text-muted mt-2">Authentic Indian flavours — fresh, delicious and ready to deliver</p>
+  </div>
+</div>
+
+
+<!-- FILTER BAR -->
+<div class="container my-4">
+  <div class="filter-bar">
+    <div class="search-bar">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="Search dishes…"/>
+    </div>
+    <select class="filter-select" id="catFilter">
+      <option value="all">All Categories</option>
+      <option value="biryani">🍛 Biryani</option>
+      <option value="curry">🍲 Curries</option>
+      <option value="tandoor">🔥 Tandoor</option>
+      <option value="snacks">🥙 Snacks</option>
+      <option value="dosa">🫓 Dosa & Idli</option>
+      <option value="sweets">🍮 Sweets</option>
+      <option value="drinks">🥤 Drinks</option>
+    </select>
+    <select class="filter-select" id="sortFilter">
+      <option value="default">Sort By</option>
+      <option value="price-asc">Price: Low → High</option>
+      <option value="price-desc">Price: High → Low</option>
+      <option value="rating">Top Rated</option>
+    </select>
+    <select class="filter-select" id="priceFilter">
+      <option value="all">Any Price</option>
+      <option value="budget">Under ₹150</option>
+      <option value="mid">₹150 – ₹350</option>
+      <option value="premium">₹350+</option>
+    </select>
+  </div>
+</div>
+
+
+<!-- CATEGORY PILLS -->
+<div class="container mb-4">
+  <div class="d-flex gap-3 overflow-auto pb-1" style="scrollbar-width:none;">
+    <button class="cat-pill active" data-cat="all"><span class="emoji">🍽️</span> All</button>
+    <button class="cat-pill" data-cat="biryani"><span class="emoji">🍛</span> Biryani</button>
+    <button class="cat-pill" data-cat="curry"><span class="emoji">🍲</span> Curries</button>
+    <button class="cat-pill" data-cat="tandoor"><span class="emoji">🔥</span> Tandoor</button>
+    <button class="cat-pill" data-cat="snacks"><span class="emoji">🥙</span> Snacks</button>
+    <button class="cat-pill" data-cat="dosa"><span class="emoji">🫓</span> Dosa</button>
+    <button class="cat-pill" data-cat="sweets"><span class="emoji">🍮</span> Sweets</button>
+    <button class="cat-pill" data-cat="drinks"><span class="emoji">🥤</span> Drinks</button>
+  </div>
+</div>
+
+
+<!-- MENU GRID -->
+<div class="container mb-5">
+  <div id="resultsInfo" class="mb-3 text-muted" style="font-size:14px;"></div>
+  <div class="row g-4" id="menuGrid"></div>
+  <div id="emptyState" class="empty-state d-none">
+    <div class="emoji">😕</div>
+    <h4>No dishes found</h4>
+    <p>Try adjusting your filters or search term.</p>
+    <button class="btn-primary-custom" onclick="resetFilters()">Clear Filters</button>
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 pt-2">
+      <span style="font-size:22px; font-family:'Playfair Display',serif; color:#fff;">Food<span style="color:var(--primary);">Hub</span></span>
+      <p class="mb-0" style="font-size:13px;">© 2025 FoodHub India. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+<script>
+
+const MENU = [
+  // BIRYANI
+  { id:'1',  name:'Chicken Biryani',        cat:'biryani', price:299, rating:4.9, time:'35 min', badge:'Best Seller', badgeColor:'#f97316', img:'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=600&auto=format&fit=crop', desc:'Aromatic basmati rice with tender chicken and whole spices.' },
+  { id:'2',  name:'Mutton Dum Biryani',     cat:'biryani', price:399, rating:4.8, time:'45 min', badge:'Premium',    badgeColor:'#0ea5e9', img:'https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=600&auto=format&fit=crop', desc:'Slow-cooked dum biryani with succulent mutton pieces.' },
+  { id:'3',  name:'Veg Hyderabadi Biryani', cat:'biryani', price:229, rating:4.6, time:'30 min', badge:'Veg 🌿',     badgeColor:'#22c55e', img:'https://images.unsplash.com/photo-1645177628172-a94c1f96diaz?q=80&w=600&auto=format&fit=crop', desc:'Fragrant basmati with mixed vegetables and saffron.' },
+  // CURRIES
+  { id:'4',  name:'Butter Chicken',         cat:'curry',   price:349, rating:4.9, time:'30 min', badge:'Popular',   badgeColor:'#8b5cf6', img:'https://images.unsplash.com/photo-1574484284002-952d92456975?q=80&w=600&auto=format&fit=crop', desc:'Creamy tomato-based curry with tender chicken morsels.' },
+  { id:'5',  name:'Dal Makhani',            cat:'curry',   price:249, rating:4.7, time:'25 min', badge:'Classic',   badgeColor:'#f97316', img:'https://images.unsplash.com/photo-1546833999-b9f581a1996d?q=80&w=600&auto=format&fit=crop', desc:'Slow-cooked black lentils in butter and cream.' },
+  { id:'6',  name:'Paneer Tikka Masala',    cat:'curry',   price:299, rating:4.8, time:'28 min', badge:'Veg 🌿',    badgeColor:'#22c55e', img:'https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=600&auto=format&fit=crop', desc:'Chargrilled paneer in rich, spiced tomato gravy.' },
+  { id:'7',  name:'Rogan Josh',             cat:'curry',   price:379, rating:4.7, time:'40 min', badge:'',          badgeColor:'', img:'https://images.unsplash.com/photo-1585937421612-70a008356fbe?q=80&w=600&auto=format&fit=crop', desc:'Kashmiri braised mutton with aromatic red spices.' },
+  // TANDOOR
+  { id:'8',  name:'Tandoori Chicken (Half)',cat:'tandoor', price:279, rating:4.9, time:'25 min', badge:'🔥 Hot',    badgeColor:'#ef4444', img:'https://images.unsplash.com/photo-1527477396000-e27163b481c2?q=80&w=600&auto=format&fit=crop', desc:'Juicy chicken marinated in yogurt and spices, cooked in tandoor.' },
+  { id:'9',  name:'Seekh Kebab',            cat:'tandoor', price:329, rating:4.8, time:'22 min', badge:'',          badgeColor:'', img:'https://images.unsplash.com/photo-1529543544282-ea669407fca3?q=80&w=600&auto=format&fit=crop', desc:'Minced mutton kebabs with mint chutney.' },
+  { id:'10', name:'Paneer Tikka',           cat:'tandoor', price:249, rating:4.7, time:'20 min', badge:'Veg 🌿',   badgeColor:'#22c55e', img:'https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=600&auto=format&fit=crop', desc:'Cottage cheese marinated in spices and grilled in tandoor.' },
+  // SNACKS
+  { id:'11', name:'Samosa (2 pcs)',         cat:'snacks',  price:49,  rating:4.6, time:'10 min', badge:'',          badgeColor:'', img:'https://images.unsplash.com/photo-1626132647523-66b710cb0cf8?q=80&w=600&auto=format&fit=crop', desc:'Crispy fried pastry filled with spiced potatoes and peas.' },
+  { id:'12', name:'Pav Bhaji',              cat:'snacks',  price:129, rating:4.8, time:'15 min', badge:'Mumbai Special', badgeColor:'#f97316', img:'https://images.unsplash.com/photo-1606491956689-2ea866880c84?q=80&w=600&auto=format&fit=crop', desc:'Spicy mashed vegetable curry with buttered pav rolls.' },
+  { id:'13', name:'Chole Bhature',          cat:'snacks',  price:149, rating:4.7, time:'20 min', badge:'',          badgeColor:'', img:'https://images.unsplash.com/photo-1567529684892-09290a1b2d05?q=80&w=600&auto=format&fit=crop', desc:'Spiced chickpea curry with fluffy deep-fried bread.' },
+  // DOSA
+  { id:'14', name:'Masala Dosa',            cat:'dosa',    price:149, rating:4.9, time:'18 min', badge:'South Special', badgeColor:'#22c55e', img:'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?q=80&w=600&auto=format&fit=crop', desc:'Crispy dosa stuffed with spiced potato, served with sambar and chutneys.' },
+  { id:'15', name:'Idli Sambar (4 pcs)',    cat:'dosa',    price:89,  rating:4.6, time:'15 min', badge:'Healthy',   badgeColor:'#22c55e', img:'https://images.unsplash.com/photo-1630383249896-424e482df921?q=80&w=600&auto=format&fit=crop', desc:'Steamed rice cakes served with lentil sambar and coconut chutney.' },
+  { id:'16', name:'Rava Uttapam',           cat:'dosa',    price:119, rating:4.5, time:'16 min', badge:'',          badgeColor:'', img:'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?q=80&w=600&auto=format&fit=crop', desc:'Thick semolina pancake topped with onions, tomato and green chillies.' },
+  // SWEETS
+  { id:'17', name:'Gulab Jamun (4 pcs)',    cat:'sweets',  price:79,  rating:4.8, time:'10 min', badge:'Must Try',  badgeColor:'#f97316', img:'https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=600&auto=format&fit=crop', desc:'Soft milk-solid balls soaked in rose-flavoured sugar syrup.' },
+  { id:'18', name:'Gajar Ka Halwa',         cat:'sweets',  price:99,  rating:4.7, time:'10 min', badge:'Winter Special', badgeColor:'#0ea5e9', img:'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?q=80&w=600&auto=format&fit=crop', desc:'Slow-cooked carrot pudding with ghee, milk and dry fruits.' },
+  // DRINKS
+  { id:'19', name:'Mango Lassi',            cat:'drinks',  price:89,  rating:4.9, time:'5 min',  badge:'Refreshing',badgeColor:'#eab308', img:'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?q=80&w=600&auto=format&fit=crop', desc:'Thick chilled yogurt blended with fresh Alphonso mango pulp.' },
+  { id:'20', name:'Masala Chai',            cat:'drinks',  price:49,  rating:4.7, time:'5 min',  badge:'',          badgeColor:'', img:'https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?q=80&w=600&auto=format&fit=crop', desc:'Spiced Indian tea brewed with ginger, cardamom and milk.' },
+];
+
+const menuGrid = document.getElementById('menuGrid');
+const emptyDiv = document.getElementById('emptyState');
+const infoDiv  = document.getElementById('resultsInfo');
+let activeCategory = 'all';
+
+function renderCards(items) {
+  menuGrid.innerHTML = '';
+  if (items.length === 0) { emptyDiv.classList.remove('d-none'); infoDiv.textContent = ''; return; }
+  emptyDiv.classList.add('d-none');
+  infoDiv.textContent = `Showing ${items.length} item${items.length !== 1 ? 's' : ''}`;
+
+  items.forEach(item => {
+    const col = document.createElement('div');
+    col.className = 'col-md-6 col-lg-4 fade-in';
+    col.innerHTML = `
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x260?text=Food'"/>
+          ${item.badge ? `<span class="food-badge" style="background:${item.badgeColor}">${item.badge}</span>` : ''}
+          <button class="food-fav" title="Favourite"><i class="fa-regular fa-heart"></i></button>
+        </div>
+        <div class="food-body">
+          <div class="food-meta">
+            <span class="food-rating">⭐ ${item.rating}</span>
+            <span class="food-time"><i class="fa-regular fa-clock me-1"></i>${item.time}</span>
+          </div>
+          <h5>${item.name}</h5>
+          <p>${item.desc}</p>
+          <div class="food-footer">
+            <span class="food-price">₹${item.price}</span>
+            <button class="btn-add" data-id="${item.id}" data-name="${item.name}" data-price="${item.price}" data-img="${item.img}">+</button>
+          </div>
+        </div>
+      </div>`;
+    menuGrid.appendChild(col);
+  });
+
+  menuGrid.querySelectorAll('.btn-add').forEach(btn => {
+    btn.addEventListener('click', () => {
+      FoodHub.addToCart({ id: btn.dataset.id, name: btn.dataset.name, price: parseFloat(btn.dataset.price), img: btn.dataset.img });
+      btn.textContent = '✓'; btn.classList.add('added');
+      setTimeout(() => { btn.textContent = '+'; btn.classList.remove('added'); }, 1200);
+    });
+  });
+
+  menuGrid.querySelectorAll('.food-fav').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('liked');
+      btn.innerHTML = btn.classList.contains('liked') ? '<i class="fa-solid fa-heart"></i>' : '<i class="fa-regular fa-heart"></i>';
+    });
+  });
+
+  setTimeout(() => document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible')), 50);
+}
+
+function applyFilters() {
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const cat    = document.getElementById('catFilter').value;
+  const sort   = document.getElementById('sortFilter').value;
+  const price  = document.getElementById('priceFilter').value;
+
+  let results = MENU.filter(item => {
+    const matchCat    = cat === 'all' || item.cat === cat;
+    const matchAct    = activeCategory === 'all' || item.cat === activeCategory;
+    const matchSearch = item.name.toLowerCase().includes(search) || item.desc.toLowerCase().includes(search);
+    const matchPrice  = price === 'all'
+      || (price === 'budget'  && item.price < 150)
+      || (price === 'mid'     && item.price >= 150 && item.price <= 350)
+      || (price === 'premium' && item.price > 350);
+    return matchCat && matchAct && matchSearch && matchPrice;
+  });
+
+  if (sort === 'price-asc')  results.sort((a, b) => a.price - b.price);
+  if (sort === 'price-desc') results.sort((a, b) => b.price - a.price);
+  if (sort === 'rating')     results.sort((a, b) => b.rating - a.rating);
+
+  renderCards(results);
+}
+
+function resetFilters() {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('catFilter').value = 'all';
+  document.getElementById('sortFilter').value = 'default';
+  document.getElementById('priceFilter').value = 'all';
+  activeCategory = 'all';
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.toggle('active', p.dataset.cat === 'all'));
+  applyFilters();
+}
+
+document.querySelectorAll('.cat-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    activeCategory = pill.dataset.cat;
+    document.getElementById('catFilter').value = activeCategory;
+    applyFilters();
+  });
+});
+
+['searchInput', 'catFilter', 'sortFilter', 'priceFilter'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', applyFilters);
+});
+
+const urlCat = new URLSearchParams(location.search).get('cat');
+if (urlCat) {
+  activeCategory = urlCat;
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.toggle('active', p.dataset.cat === urlCat));
+  document.getElementById('catFilter').value = urlCat;
+}
+
+applyFilters();
+</script>
+</body>
+</html>

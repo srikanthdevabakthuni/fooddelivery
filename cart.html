@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart — FoodHub India</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><span class="logo-text">Food<span>Hub</span></span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <i class="fa-solid fa-bars" style="font-size:22px;"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link active-link" href="cart.html">Cart</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3">
+        <a href="cart.html" class="btn-icon cart-badge">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge-count">0</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- PAGE HEADER -->
+<div style="padding-top:110px; padding-bottom:40px; background:linear-gradient(135deg,#fff7ed,#fff);">
+  <div class="container">
+    <span class="section-label">MY ORDER</span>
+    <h1 class="section-title">Shopping Cart</h1>
+  </div>
+</div>
+
+
+<!-- CART CONTENT -->
+<div class="container my-5">
+  <div class="row g-4">
+
+    <!-- Left: Items -->
+    <div class="col-lg-8">
+      <div id="cartItems"></div>
+
+      <div id="cartEmpty" class="empty-state d-none">
+        <div class="emoji">🛒</div>
+        <h4>Your cart is empty</h4>
+        <p>Add some delicious Indian food from our menu!</p>
+        <a href="menu.html" class="btn-primary-custom">Browse Menu</a>
+      </div>
+
+      <div id="cartFooter" class="d-flex justify-content-between align-items-center mt-4">
+        <a href="menu.html" class="btn-outline-custom">
+          <i class="fa-solid fa-arrow-left me-2"></i>Continue Shopping
+        </a>
+        <button class="btn-outline-custom" style="color:var(--danger); border-color:var(--danger);" onclick="clearCart()">
+          <i class="fa-solid fa-trash me-2"></i>Clear Cart
+        </button>
+      </div>
+    </div>
+
+    <!-- Right: Summary -->
+    <div class="col-lg-4">
+      <div class="cart-total-box">
+        <h5>Order Summary</h5>
+
+        <div class="total-row">
+          <span class="label">Subtotal</span>
+          <span class="value" id="subtotal">₹0</span>
+        </div>
+        <div class="total-row">
+          <span class="label">Delivery Fee</span>
+          <span class="value" id="deliveryFee">₹49</span>
+        </div>
+        <div class="total-row">
+          <span class="label">GST (5%)</span>
+          <span class="value" id="taxAmt">₹0</span>
+        </div>
+        <div class="total-row">
+          <span class="label">Discount</span>
+          <span class="value text-success" id="discount">-₹0</span>
+        </div>
+        <div class="total-row grand">
+          <span>Total</span>
+          <span class="value" id="grandTotal">₹0</span>
+        </div>
+
+        <!-- Promo code -->
+        <div class="promo-box">
+          <input type="text" id="promoInput" placeholder="Promo code…"/>
+          <button class="btn-primary-custom" style="padding:11px 18px;" onclick="applyPromo()">Apply</button>
+        </div>
+        <p id="promoMsg" class="text-success" style="font-size:13px; min-height:18px;"></p>
+
+        <a href="checkout.html" id="checkoutBtn" class="btn-primary-custom w-100 text-center mt-3" style="pointer-events:none; opacity:0.5;">
+          Proceed to Checkout <i class="fa-solid fa-arrow-right ms-2"></i>
+        </a>
+
+        <!-- Payment methods -->
+        <div class="mt-3 d-flex gap-2 justify-content-center flex-wrap" style="font-size:12px; color:var(--muted);">
+          <span>💳 Cards</span>
+          <span>📱 UPI</span>
+          <span>🏦 Net Banking</span>
+          <span>💵 COD</span>
+        </div>
+
+        <!-- Delivery estimate -->
+        <div class="mt-4 p-3 rounded-3" style="background:#f0fdf4;">
+          <div class="d-flex align-items-center gap-2">
+            <i class="fa-solid fa-motorcycle text-success"></i>
+            <span style="font-size:14px; font-weight:600;">Est. delivery: 30–45 min</span>
+          </div>
+        </div>
+
+        <!-- Promo hints -->
+        <div class="mt-3 p-3 rounded-3" style="background:#fff7ed; font-size:13px; color:var(--muted);">
+          <b style="color:var(--primary);">Available Promos:</b><br/>
+          FIRST50 — 50% off &nbsp;|&nbsp; SAVE10 — 10% off &nbsp;|&nbsp; FOODHUB — 15% off
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 pt-2">
+      <span style="font-size:22px; font-family:'Playfair Display',serif; color:#fff;">Food<span style="color:var(--primary);">Hub</span></span>
+      <p class="mb-0" style="font-size:13px;">© 2025 FoodHub India. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+<script>
+
+const PROMOS = { 'FIRST50': 50, 'SAVE10': 10, 'FOODHUB': 15 };
+let discountPct = 0;
+
+function fmt(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+
+// ── RENDER CART ──────────────────────────────────────
+function renderCart() {
+  const cart     = FoodHub.getCart();
+  const itemsEl  = document.getElementById('cartItems');
+  const emptyEl  = document.getElementById('cartEmpty');
+  const footerEl = document.getElementById('cartFooter');
+  const checkBtn = document.getElementById('checkoutBtn');
+
+  if (cart.length === 0) {
+    itemsEl.innerHTML = '';
+    emptyEl.classList.remove('d-none');
+    footerEl.classList.add('d-none');
+    checkBtn.style.pointerEvents = 'none';
+    checkBtn.style.opacity = '0.5';
+    updateSummary();
+    return;
+  }
+
+  emptyEl.classList.add('d-none');
+  footerEl.classList.remove('d-none');
+  checkBtn.style.pointerEvents = 'auto';
+  checkBtn.style.opacity = '1';
+
+  itemsEl.innerHTML = cart.map(item => `
+    <div class="cart-item" data-id="${item.id}">
+      <img src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/90x90?text=Food'"/>
+      <div class="cart-item-info">
+        <h6>${item.name}</h6>
+        <p class="item-desc">Fresh from our kitchen</p>
+        <p class="item-price">${fmt(item.price)} each</p>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
+          <span class="qty-num">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+        </div>
+      </div>
+      <div class="cart-item-actions">
+        <button class="btn-remove" onclick="removeItem('${item.id}')" title="Remove">
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
+        <strong style="font-size:18px; color:var(--primary);">${fmt(item.price * item.qty)}</strong>
+      </div>
+    </div>
+  `).join('');
+
+  updateSummary();
+}
+
+function updateSummary() {
+  const sub      = FoodHub.getTotal();
+  const delivery = sub === 0 ? 0 : (sub >= 499 ? 0 : 49);
+  const tax      = sub * 0.05;
+  const disc     = sub * (discountPct / 100);
+  const total    = Math.max(0, sub + delivery + tax - disc);
+
+  document.getElementById('subtotal').textContent    = fmt(sub);
+  document.getElementById('deliveryFee').textContent = sub >= 499 && sub > 0 ? 'Free 🎉' : fmt(delivery);
+  document.getElementById('taxAmt').textContent      = fmt(tax);
+  document.getElementById('discount').textContent    = '-' + fmt(disc);
+  document.getElementById('grandTotal').textContent  = fmt(total);
+}
+
+function changeQty(id, delta) {
+  FoodHub.changeQty(id, delta);
+  renderCart();
+}
+
+function removeItem(id) {
+  FoodHub.removeFromCart(id);
+  FoodHub.showToast('Item removed from cart');
+  renderCart();
+}
+
+function clearCart() {
+  if (!confirm('Clear your entire cart?')) return;
+  FoodHub.clearCart();
+  renderCart();
+}
+
+function applyPromo() {
+  const code = document.getElementById('promoInput').value.trim().toUpperCase();
+  const msg  = document.getElementById('promoMsg');
+  if (PROMOS[code]) {
+    discountPct = PROMOS[code];
+    msg.textContent = `✅ ${discountPct}% discount applied!`;
+    msg.className = 'text-success';
+    updateSummary();
+  } else {
+    msg.textContent = '❌ Invalid promo code.';
+    msg.className = 'text-danger';
+  }
+}
+
+// Allow pressing Enter on promo input
+document.getElementById('promoInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') applyPromo();
+});
+
+renderCart();
+</script>
+</body>
+</html>
